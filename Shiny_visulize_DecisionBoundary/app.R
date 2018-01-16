@@ -1,5 +1,5 @@
 library(shiny)
-setwd("C:/Users/cui_w/Desktop/MachineLearning/machine-learning-ex2/ex2")
+
 edata<-as.matrix(read.table("ex2data2.txt",sep = ","))
 x<-edata[,1:2]
 y<-edata[,3]
@@ -23,20 +23,7 @@ sigmoid<-function(x){
   return (1/(1+exp(-x)))
 }
 
-costFunctionReg<-function(theta,x,y,lamda){
-  h<-sigmoid(x%*%theta)
-  m<-dim(x)[1]
-  J<-  1/m*(-t(y)%*%log(h)-t(1-y)%*%log(1-h))+lamda/(2*m)*(theta^2%*%rep(1,length(theta)))
-  
-  mtheta<-theta
-  mtheta[1]<-0
-  grad<-1/m*t(x)%*%(h-y)+lamda/m*mtheta
-  #grad[1]<-(1/m*t(x)%*%(h-y))[1]
-  #grad[1]<- (t(x))[1,]%*%(1/m*(h-y))
-  
-  a<-list(J=J,grad=grad)
-  return(a)
-}
+
 fr<-function(theta,x,y,lamda){
   h<-sigmoid(x%*%theta)
   m<-dim(x)[1]
